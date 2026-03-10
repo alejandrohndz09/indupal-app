@@ -1,0 +1,28 @@
+<?php
+
+class Usuario {
+    private $conn;
+
+    public function __construct($db)
+    {
+        $this->conn = $db;
+    }
+
+    public function selecionarTodos()
+    {
+        $query = "SELECT * FROM usuarios";
+        $stmt = $this->conn->prepare($query);
+        
+        return  $stmt->execute();
+
+    }
+
+    public function inserir($dados)
+    {
+        $query = "INSERT INTO usuarios (nome, email) VALUES (:nome, :email)";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':nome', $dados['nome']);
+        $stmt->bindParam(':email', $dados['email']);
+        return $stmt->execute();
+    }
+}
