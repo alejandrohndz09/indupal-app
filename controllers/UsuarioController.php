@@ -2,7 +2,16 @@
 require_once '../config/conn.php';
 require_once '../model/Usuario.php';
 
-$usuario = new Usuario($conn);
+class UsuarioController{
+    private $usuario;
 
-// Exemplo de uso
-$usuarios = $usuario->selecionarTodos();
+    public function __construct($conn) {
+        $this->usuario = new Usuario($conn);
+    }
+
+    public function listarUsuarios() {
+        $usuarios = $this->usuario->selecionarTodos();
+        Response::success($usuarios);
+    }
+
+}

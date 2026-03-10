@@ -1,7 +1,7 @@
 <?php 
  class Response {
-    public static function success($data, $message) {
-        http_response_code(200);
+    public static function success($data=[], $message="") {
+        // http_response_code(200);
         echo json_encode([
             "success" => true,
             "message" => $message,
@@ -10,12 +10,12 @@
         exit;
     }
 
-    public static function error($data, $message) {
+    public static function error($errors=[], $message) {
         http_response_code(422);
         echo json_encode([
             "success" => false,
             "message" => $message,
-            "data" => $data
+            "errors" => $errors
         ]);
         exit;
     }

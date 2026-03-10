@@ -12,8 +12,9 @@ class Usuario {
     {
         $query = "SELECT * FROM usuarios";
         $stmt = $this->conn->prepare($query);
-        
-        return  $stmt->execute();
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     }
 
